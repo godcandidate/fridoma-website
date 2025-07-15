@@ -49,7 +49,7 @@ const PricePrediction: React.FC<PricePredictionProps> = ({ prediction }) => {
         <div className="text-center">
           <div className="flex flex-col items-center">
             <span className="text-gray-600 font-medium mb-2">Confidence Score</span>
-            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-500">
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-500">
               {Math.round((prediction.confidenceMax - prediction.confidenceMin) / prediction.price * 100)}%
             </div>
           </div>
