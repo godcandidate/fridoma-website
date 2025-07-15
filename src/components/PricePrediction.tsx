@@ -31,18 +31,38 @@ const PricePrediction: React.FC<PricePredictionProps> = ({ prediction }) => {
         <p className="text-gray-600">Based on your property details</p>
       </div>
       
-      <div className="text-center mb-8">
-        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-500 mb-4">
-          ${prediction.price.toLocaleString()}
+      <div className="space-y-6">
+        <div className="text-center">
+          <div className="flex flex-col items-center">
+            <span className="text-gray-600 font-medium mb-2">Estimated Price</span>
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-500">
+              ${prediction.price.toLocaleString()}
+            </div>
+            <div className="text-gray-600 mt-2">
+              <span className="font-medium">Confidence Range:</span>
+              <br />
+              ${prediction.confidenceMin.toLocaleString()} - ${prediction.confidenceMax.toLocaleString()}
+            </div>
+          </div>
         </div>
-        <div className="text-gray-600">
-          <span className="font-medium">Confidence Interval:</span>
-          <br />
-          ${prediction.confidenceMin.toLocaleString()} – ${prediction.confidenceMax.toLocaleString()}
+
+        <div className="text-center">
+          <div className="flex flex-col items-center">
+            <span className="text-gray-600 font-medium mb-2">Confidence Score</span>
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-500">
+              {Math.round((prediction.confidenceMax - prediction.confidenceMin) / prediction.price * 100)}%
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div className="space-y-4">
+
+        <div className="text-center mb-6">
+          <div className="text-gray-600">
+            <span className="font-medium">Top Factors Affecting Price:</span>
+            <br />
+            Square Footage, Number of Bedrooms/Bathrooms
+          </div>
+        </div>
+
         <div className="text-center">
           <p className="text-sm text-gray-600 mb-4">How accurate is this prediction?</p>
           <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
@@ -70,11 +90,11 @@ const PricePrediction: React.FC<PricePredictionProps> = ({ prediction }) => {
             </button>
           </div>
         </div>
-        
-        <div className="pt-4 border-t border-gray-200">
+
+        <div className="flex justify-center pt-4 border-t border-gray-200">
           <button
             onClick={handleSave}
-            className={`w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-lg transition-colors ${
+            className={`flex items-center justify-center space-x-2 px-4 py-3 rounded-lg transition-colors ${
               saved
                 ? 'bg-orange-500 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-orange-100'
