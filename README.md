@@ -1,8 +1,14 @@
 # Fridoma Real Estate Platform
 
-A modern and user-friendly real estate platform built with React, TypeScript, and Vite.
+![React](https://img.shields.io/badge/React-18-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC)
 
-## 🚀 Features
+A sleek, modern image gallery application built with React, TypeScript, and AWS services. Upload, view, and manage your images with a clean and intuitive interface.
+
+<p align="center"> <img src="dashboard.png" alt="Image Gallery App" width="800"> </p>
+
+## Features
 
 - 🏡 Property Listings: Browse through thousands of properties worldwide
 - 💰 Price Prediction: Get accurate property price estimates
@@ -10,7 +16,7 @@ A modern and user-friendly real estate platform built with React, TypeScript, an
 - 📱 Fully Responsive: Works perfectly on all devices
 - 🔐 Secure: Built with security in mind
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: React 18, TypeScript, Vite
 - **Styling**: Tailwind CSS, Lucide React Icons
@@ -18,12 +24,12 @@ A modern and user-friendly real estate platform built with React, TypeScript, an
 - **Development**: ESLint, TypeScript ESLint
 - **Build**: Vite
 
-## 📦 Prerequisites
+## Prerequisites
 
 - Node.js (v18 or higher)
 - npm or yarn
 
-## 🚀 Getting Started
+## Getting Started
 
 1. Clone the repository:
 
