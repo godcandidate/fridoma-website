@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 import { Calculator, Plus, Minus } from 'lucide-react';
 
 interface PropertyFormProps {
-  onPredict: (formData: any) => void;
+  onPredict: (formData: {
+    sqft: number;
+    bedrooms: number;
+    bathrooms: number;
+    location: string;
+    year_built: number;
+    condition: string;
+  }) => void;
+  isLoading?: boolean;
 }
 
-const PropertyForm: React.FC<PropertyFormProps> = ({ onPredict }) => {
+const PropertyForm: React.FC<PropertyFormProps> = ({ onPredict, isLoading = false }) => {
   const [formData, setFormData] = useState({
     sqft: '',
     bedrooms: 1,
@@ -17,6 +25,8 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onPredict }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (isLoading) return;
+    
     onPredict({
       ...formData,
       sqft: parseInt(formData.sqft),
@@ -55,9 +65,12 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onPredict }) => {
             name="sqft"
             value={formData.sqft}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 ${
+              isLoading ? 'opacity-75 cursor-not-allowed' : ''
+            }`}
             placeholder="e.g., 1200"
             required
+            disabled={isLoading}
           />
         </div>
         
@@ -69,8 +82,13 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onPredict }) => {
             <div className="flex items-center space-x-2 sm:space-x-3">
               <button
                 type="button"
-                onClick={() => handleCountChange('bedrooms', false)}
-                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg border border-gray-300 hover:border-orange-500 hover:bg-orange-50 transition-all duration-200"
+                onClick={() => !isLoading && handleCountChange('bedrooms', false)}
+                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg border border-gray-300 transition-all duration-200 ${
+                  isLoading 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'hover:border-orange-500 hover:bg-orange-50'
+                }`}
+                disabled={isLoading}
               >
                 <Minus className="w-4 h-4 text-gray-600" />
               </button>
@@ -80,8 +98,13 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onPredict }) => {
               </div>
               <button
                 type="button"
-                onClick={() => handleCountChange('bedrooms', true)}
-                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg border border-gray-300 hover:border-orange-500 hover:bg-orange-50 transition-all duration-200"
+                onClick={() => !isLoading && handleCountChange('bedrooms', true)}
+                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg border border-gray-300 transition-all duration-200 ${
+                  isLoading 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'hover:border-orange-500 hover:bg-orange-50'
+                }`}
+                disabled={isLoading}
               >
                 <Plus className="w-4 h-4 text-gray-600" />
               </button>
@@ -173,10 +196,25 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onPredict }) => {
         
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 px-6 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+          className={`w-full bg-orange-500 text-white py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 flex items-center justify-center space-x-2 ${
+            isLoading ? 'opacity-75 cursor-not-allowed' : 'hover:bg-orange-600'
+          }`}
+          disabled={isLoading}
         >
-          <Calculator className="w-5 h-5" />
-          <span>Predict Price</span>
+          {isLoading ? (
+            <>
+              <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>Calculating...</span>
+            </>
+          ) : (
+            <>
+              <Calculator className="w-5 h-5" />
+              <span>Calculate Price</span>
+            </>
+          )}
         </button>
       </form>
     </div>
