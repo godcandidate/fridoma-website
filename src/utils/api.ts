@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_URL || 'https://9hraz8xgf8.execute-api.eu-west-1.amazonaws.com/dev';
 
 interface PredictionResponse {
   predicted_price: number;
