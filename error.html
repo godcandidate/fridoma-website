@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oops! - Fridoma Real Estate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 500px;
+            padding: 2rem;
+        }
+        
+        .house-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: bounce 2s infinite;
+        }
+        
+        .house {
+            width: 100%;
+            height: 100%;
+            background: #FF9800;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3);
+        }
+        
+        .house::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 40px solid #2196f3;
+        }
+        
+        .door {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            background: #fff;
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .window {
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 3px;
+        }
+        
+        .window:first-of-type {
+            left: 20px;
+        }
+        
+        .window:last-of-type {
+            right: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #FF9800;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            animation: fadeIn 1s ease-in 0.3s both;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="house-icon">
+            <div class="house">
+                <div class="window"></div>
+                <div class="window"></div>
+                <div class="door"></div>
+            </div>
+        </div>
+        
+        <h1>Fridoma</h1>
+        <p>Website currently down or unavailable</p>
+    </div>
+</body>
+</html>
